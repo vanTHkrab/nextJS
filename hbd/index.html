@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Happy Birthday</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+        }
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        img {
+            position: absolute;
+            width: auto;
+            height: 150px;
+            z-index: 2;
+            transform: scale(1);
+            transition: bottom 5s ease-in-out, transform 5s ease-in-out;
+        }
+        video {
+            position: absolute;
+            width: 300px;
+            z-index: 3;
+            border: 3px solid white;
+            border-radius: 10px;
+            bottom: -750px; /* เริ่มต้นจากด้านล่าง */
+            transition: bottom 5s ease-in-out; /* ลอยขึ้น */
+        }
+        .message {
+            position: absolute;
+            font-size: 50px;
+            color: white;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            z-index: 4;
+            opacity: 0;
+            animation: fadeIn 5s forwards;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+<canvas id="fireworkCanvas"></canvas>
+<video autoplay muted loop>
+    <source src="images/7.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+
+<script>
+    const canvas = document.getElementById("fireworkCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Set canvas dimensions
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const ww = canvas.width;
+    const hh = canvas.height;
+
+    // Firework particle class
+    class Particle {
+        constructor(x, y, color) {
+            this.x = x;
+            this.y = y;
+            this.color = color;
+            this.radius = Math.random() * 3 + 2;
+            this.vx = Math.random() * 4 - 2;
+            this.vy = Math.random() * 4 - 2;
+            this.alpha = 1;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+        }
+
+        draw() {
+            ctx.globalAlpha = this.alpha;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+            ctx.closePath();
+        }
+    }
+
+    // Firework class
+    class Firework {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.particles = [];
+            this.exploded = false;
+            this.vy = -8;
+            this.color = `hsl(${Math.random() * 360}, 80%, 50%)`;
+        }
+
+        launch() {
+            if (!this.exploded) {
+                this.y += this.vy;
+                if (this.vy < -2) this.vy += 0.3;
+                if (this.y < hh / 3) this.explode();
+            }
+        }
+
+        explode() {
+            this.exploded = true;
+            for (let i = 0; i < 50; i++) {
+                this.particles.push(
+                    new Particle(
+                        this.x,
+                        this.y,
+                        `hsl(${Math.random() * 360}, 80%, 50%)`
+                    )
+                );
+            }
+        }
+
+        update() {
+            if (this.exploded) {
+                this.particles.forEach((p) => p.update());
+            } else {
+                this.launch();
+            }
+        }
+
+        draw() {
+            if (!this.exploded) {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 5, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.closePath();
+            }
+            this.particles.forEach((p) => p.draw());
+        }
+    }
+
+    // Animation setup
+    const fireworks = [];
+    let revealWidth = 0;
+
+    function createFirework() {
+        const x = Math.random() * ww;
+        fireworks.push(new Firework(x, hh));
+    }
+
+    function drawText() {
+        ctx.save();
+        ctx.font = "bold 60px Arial";
+        ctx.textAlign = "center";
+
+        const gradient = ctx.createLinearGradient(0, hh / 2 - 30, ww, hh / 2 + 30);
+        gradient.addColorStop(0, "red");
+        gradient.addColorStop(0.2, "orange");
+        gradient.addColorStop(0.4, "yellow");
+        gradient.addColorStop(0.6, "green");
+        gradient.addColorStop(0.8, "blue");
+        gradient.addColorStop(1, "violet");
+
+        ctx.fillStyle = gradient;
+
+        ctx.beginPath();
+        ctx.rect(ww / 2 - 300, hh / 2 - 50, revealWidth, 100);
+        ctx.clip();
+
+        ctx.shadowColor = "rgba(255, 255, 255, 0.8)";
+        ctx.shadowBlur = 10;
+        ctx.fillText("Happy Birthday!!", ww / 2, hh / 2 + 20);
+        ctx.restore();
+
+        if (revealWidth < 600) {
+            revealWidth += 5;
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, ww, hh);
+
+        fireworks.forEach((fw) => {
+            fw.update();
+            fw.draw();
+        });
+
+        if (performance.now() > 5000) drawText(); // Delay text reveal by 5 seconds
+
+        requestAnimationFrame(animate);
+    }
+
+    // Floating images logic
+    const images = [];
+    const imageSources = [
+        "",
+        "images/1.jpg", "images/2.jpg", "images/3.jpg",
+        "images/4.jpg", "images/5.jpg", "images/6.jpg"
+    ];
+
+    let currentImageIndex = 0;
+
+    // Load and append images to the page
+    imageSources.forEach((src, index) => {
+        const img = new Image();
+        img.src = src;
+        img.style.left = `${Math.random() * (ww - 100)}px`;
+        img.style.bottom = "-150px"; // Start below screen
+        document.body.appendChild(img);
+        images.push(img);
+    });
+
+    function floatImages() {
+        if (currentImageIndex < images.length) {
+            const img = images[currentImageIndex];
+            img.style.bottom = `${hh}px`; // ลอยภาพขึ้นด้านบน
+
+            // เมื่อภาพลอยถึงด้านบนแล้ว ให้ค่อยๆ ลบออก
+            setTimeout(() => {
+                img.style.transition = "opacity 2s ease-out"; // เพิ่มเอฟเฟกต์จางหาย
+                img.style.opacity = "0"; // ตั้งค่าความโปร่งใสเป็น 0
+                setTimeout(() => img.remove(), 2000); // ลบภาพหลังจากจางหาย
+            }, 5000); // ดีเลย์ 5 วินาทีหลังจากเริ่มลอย
+
+            currentImageIndex++; // ไปยังภาพถัดไป
+            setTimeout(floatImages, 1000); // ดีเลย์ก่อนเริ่มภาพถัดไป
+        }
+    }
+
+    function floatVideo() {
+        const video = document.querySelector("video");
+        video.style.bottom = "10px"; // ลอยขึ้นไปที่ตำแหน่ง 10px จากด้านล่าง
+    }
+
+    // เรียกใช้ฟังก์ชันหลังจากดีเลย์
+    setTimeout(floatVideo, 2000); // เริ่มลอยขึ้นหลังจาก 2 วินาที
+
+
+    // Event to trigger fireworks
+    canvas.addEventListener("click", (e) => {
+        fireworks.push(new Firework(e.clientX, hh));
+    });
+
+    setInterval(createFirework, 800);
+    animate();
+    floatImages();
+</script>
+</body>
+</html>
