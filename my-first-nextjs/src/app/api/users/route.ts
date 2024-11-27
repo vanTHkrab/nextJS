@@ -9,6 +9,10 @@ export async function GET() {
         {
             id: 2,
             name: "Jane Doe"
+        },
+        {
+            id: 3,
+            name: "John Smith"
         }
     ]);
 }
