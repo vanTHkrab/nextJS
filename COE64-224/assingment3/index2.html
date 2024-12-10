@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto mt-4">
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+            <h1 class="text-2xl font-bold mb-4">Patient traction</h1>
+            <form action="/" method="post">
+                <div class="mb-4">
+                    <label for="citizen_id" class="block text-sm font-medium text-gray-700">Citizen ID</label>
+                    <input type="text" name="citizen_id" id="citizen_id" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Citizen ID" required>
+                </div>
+                <div class="grid grid-cols-2 gap-20">
+                    <div class="mb-4">
+                        <label for="prefix" class="block text-sm font-medium text-gray-700">Prefix</label>
+                        <select name="prefix" id="prefix" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                            <option value="" selected disabled>Select</option>
+                            <option value="mr">Mr</option>
+                            <option value="mrs">Mrs</option>
+                            <option value="miss">Miss</option>
+                            <option value="ms">Ms</option>
+                            <option value="dr">Dr</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                        <!-- Gender -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700">Gender</label>
+                        <div class="mt-1 flex flex-col gap-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="gender" value="male" class="form-radio h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
+                                <span class="ml-2 text-gray-700">Male</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="gender" value="female" class="form-radio h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
+                                <span class="ml-2 text-gray-700">Female</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="gender" value="other" class="form-radio h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
+                                <span class="ml-2 text-gray-700">Other</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-20">
+                    <div class="mb-4">
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="surname" class="block text-sm font-medium text-gray-700">Surname</label>
+                        <input type="text" name="surname" id="surname" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Surname" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-20">
+                    <div class="mb-4">
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" name="email" id="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Email" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                        <input type="tel" name="phone" id="phone" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Phone" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-20">
+                    <div class="mb-4">
+                        <label for="dob" class="block text-sm font-medium text-gray-700">Birthday</label>
+                        <input type="date" name="dob" id="dob" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="age" class="block text-sm font-medium text-gray-700">age</label>
+                        <input type="number" name="age" id="age" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" disabled>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-20">
+                    <div class="mb-4">
+                        <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                        <input type="text" name="address" id="address" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                        <input type="text" name="city" id="city" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-20">
+                    <div class="mb-4">
+                        <label for="state" class="block text-sm font-medium text-gray-700">State</label>
+                        <input type="text" name="state" id="state" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="zip" class="block text-sm font-medium text-gray-700">Zip</label>
+                        <input type="text" name="zip" id="zip" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                    </div>
+                </div>
+
+                <div class="border mt-4"></div>
+
+                <!--Blood Group, Height, Weight, BMI-->
+
+                <div class="grid grid-cols-4 gap-20 mt-4">
+                    <div class="mb-4">
+                        <label for="blood_group" class="block text-sm font-medium text-gray-700">Blood Group</label>
+                        <select name="blood_group" id="blood_group" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="" selected disabled>Select</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="O">O</option>
+                            <option value="AB">AB</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="height" class="block text-sm font-medium text-gray-700">Height (cm)</label>
+                        <input type="number" name="height" id="height" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="weight" class="block text-sm font-medium text-gray-700">Weight (kg)</label>
+                        <input type="number" name="weight" id="weight" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="bmi" class="block text-sm font-medium text-gray-700">BMI</label>
+                        <input type="number" name="bmi" id="bmi" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" disabled>
+                    </div>
+                </div>
+
+                <div class="border mt-4"></div>
+
+<!--History of drug allergy, Food allergy information-->
+                <h1 class="text-2xl font-bold mb-4 mt-4">
+                    History of drug allergy, Food allergy information
+                </h1>
+
+                <div class="grid grid-cols-2 gap-20">
+                    <div class="mb-4">
+                        <label for="drug_allergy" class="block text-sm font-medium text-gray-700">Drug Allergy</label>
+                        <input type="text" name="drug_allergy" id="drug_allergy" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="food_allergy" class="block text-sm font-medium text-gray-700">Food Allergy</label>
+                        <input type="text" name="food_allergy" id="food_allergy" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                </div>
+
+                <div class="border mt-4"></div>
+
+
+
+                <div class="mb-4 mt-4">
+                    <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                    <textarea name="message" id="message" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required></textarea>
+                </div>
+
+
+
+<!--                file-->
+
+                <div class="mb-4">
+                    <label for="file" class="block text-sm font-medium text-gray-700">File</label>
+                    <input type="file" name="file" id="file" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                </div>
+
+                <div class="mb-4">
+                    <button type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600">Submit</button>
+                    <button type="reset" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600" onclick="confirm_reset()">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            console.log(data);
+
+            alert('Form submitted ' + JSON.stringify(data));
+        });
+
+        const prefix = document.getElementById('prefix');
+
+        // prefix.addEventListener('change', (e) => {
+        //     if (e.target.value === 'other') {
+        //         const prefix = prompt('Enter prefix');
+        //         e.target.value = prefix;
+        //     }
+        // });
+
+        const dob = document.getElementById('dob');
+
+        dob.addEventListener('change', (e) => {
+            const dob = new Date(e.target.value);
+            const today = new Date();
+            const age = today.getFullYear() - dob.getFullYear();
+            document.getElementById('age').value = age;
+        });
+
+        const height = document.getElementById('height');
+        const weight = document.getElementById('weight');
+
+        height.addEventListener('change', (e) => {
+            const bmi = weight.value / (height.value / 100) ** 2;
+            document.getElementById('bmi').value = bmi.toFixed(2);
+        });
+
+        weight.addEventListener('change', (e) => {
+            const bmi = e.target.value / (height.value / 100) ** 2;
+            document.getElementById('bmi').value = bmi.toFixed(2);
+        });
+
+        function confirm_reset() {
+            if (confirm('Are you sure you want to reset the form?')) {
+                form.reset();
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>

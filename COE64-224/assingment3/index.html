@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Activity03 - Basic From - Audsadawut Nakthungtao - 66133505</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+
+    <style>
+        * {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .select-package {
+            border: 2px solid #4f46e5;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            background-color: #eef2ff;
+            box-shadow: 0 0 10px rgba(79, 70, 229, 0.5);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .select-package h3 {
+            color: #4f46e5;
+        }
+
+        .select-package p {
+            color: #374151;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold text-gray-900">Create Sub Domain</h2>
+
+
+            <h4 class="text-lg font-semibold text-gray-900 mt-4">What is a subdomain?</h4>
+
+            <img src="images.png"  alt="subdomain"/>
+
+            <h4 class="text-lg font-semibold text-gray-900 mt-8">Want to create a subdomain?</h4>
+
+            <form action="/" method="post" class="mt-4">
+                <div class="space-y-12">
+                    <div class="border-b border-gray-900/10 pb-12">
+                        <h2 class="text-base/7 font-semibold text-gray-900">List</h2>
+                        <p class="mt-1 text-sm/6 text-gray-600">Used for create profile sub domail</p>
+
+                        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                            <div class="sm:col-span-4">
+                                <label for="username" class="block text-sm/6 font-medium text-gray-900">Sub Domain</label>
+                                <div class="mt-2">
+                                    <div class="flex items-center rounded-md bg-white pl-3 outline outline-1 -outline-offset-1 outline-gray-300 focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+                                        <div class="shrink-0 select-none text-base text-gray-500 sm:text-sm/6">wu-sab/</div>
+                                        <input type="text" name="username" id="username" class="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6" placeholder="vanTHkrab">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-span-full">
+                                <label for="about" class="block text-sm/6 font-medium text-gray-900">About</label>
+                                <div class="mt-2">
+                                    <textarea name="about" id="about" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="A little bit about sub domain"></textarea>
+                                </div>
+                                <p class="mt-3 text-sm/6 text-gray-600">Write a few sentences about this sub domain.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-b border-gray-900/10 pb-12">
+                        <h2 class="text-lg font-semibold text-gray-900">Package</h2>
+                        <p class="mt-1 text-sm text-gray-600">Choose a package for this subdomain.</p>
+
+                        <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
+                            <div class="bg-white border rounded-lg shadow-md p-6 text-center" id="free-package">
+                                <h3 class="text-xl font-bold text-gray-900">Free</h3>
+                                <p class="mt-2 text-sm text-gray-600">Basic features with limited support.</p>
+                                <p class="mt-4 text-2xl font-bold text-indigo-600">$0</p>
+                                <button type="button" class="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600" id="free-select">
+                                    Select
+                                </button>
+                            </div>
+
+                            <div class="bg-white border rounded-lg shadow-md p-6 text-center" id="standard-package">
+                                <h3 class="text-xl font-bold text-gray-900">Standard</h3>
+                                <p class="mt-2 text-sm text-gray-600">Advanced features for small businesses.</p>
+                                <p class="mt-4 text-2xl font-bold text-indigo-600">$29</p>
+                                <button type="button" class="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600" id="standard-select">
+                                    Select
+                                </button>
+                            </div>
+
+                            <div class="bg-white border rounded-lg shadow-md p-6 text-center" id="premium-package">
+                                <h3 class="text-xl font-bold text-gray-900">Premium</h3>
+                                <p class="mt-2 text-sm text-gray-600">All features with premium support.</p>
+                                <p class="mt-4 text-2xl font-bold text-indigo-600">$49</p>
+                                <button type="button" class="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600" id="premium-select">
+                                    Select
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="border-b border-gray-900/10 pb-12">
+                        <h2 class="text-base/7 font-semibold text-gray-900">Personal Information</h2>
+                        <p class="mt-1 text-sm/6 text-gray-600">Use a permanent address where you can receive mail.</p>
+
+                        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                            <div class="sm:col-span-3">
+                                <label for="first-name" class="block text-sm/6 font-medium text-gray-900">First name</label>
+                                <div class="mt-2">
+                                    <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="First name" required>
+                                </div>
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="last-name" class="block text-sm/6 font-medium text-gray-900">Last name</label>
+                                <div class="mt-2">
+                                    <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="Last name" required>
+                                </div>
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="phone" class="block text-sm/6 font-medium text-gray-900">Phone</label>
+                                <div class="mt-2">
+                                    <input type="text" name="phone" id="phone" autocomplete="tel" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="Phone" required>
+                                </div>
+                            </div>
+
+                            <div class="sm:col-span-3"></div>
+
+<!--                            dob-->
+
+                            <div class="sm:col-span-3">
+                                <label for="dob" class="block text-sm/6 font-medium text-gray-900">Date of Birth</label>
+                                <div class="mt-2 grid grid-cols-1">
+                                    <input type="date" name="dob" id="dob" autocomplete="bday" class="col-start-1 row-start-1 w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                </div>
+                            </div>
+
+<!--                            age form script-->
+
+                            <div class="sm:col-span-3">
+                                <label for="age" class="block text-sm/6 font-medium text-gray-900">Age</label>
+                                <div class="mt-2 grid grid-cols-1">
+                                    <input type="text" name="age" id="age" autocomplete="age" class="col-start-1 row-start-1 w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" disabled placeholder="Calculate form 'Date of birth'">
+                                </div>
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="country" class="block text-sm/6 font-medium text-gray-900">Country</label>
+                                <div class="mt-2 grid grid-cols-1">
+                                    <select id="country" name="country" autocomplete="country-name" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"  >
+                                        <option selected disabled>--country--</option>
+                                        <option>Thailand</option>
+                                        <option>USA</option>
+                                        <option>BANANA</option>
+                                    </select>
+                                    <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                        <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="col-span-full">
+                                <label for="street-address" class="block text-sm/6 font-medium text-gray-900">Street address</label>
+                                <div class="mt-2">
+                                    <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="Street address">
+                                </div>
+                            </div>
+
+                            <div class="sm:col-span-2 sm:col-start-1">
+                                <label for="city" class="block text-sm/6 font-medium text-gray-900">City</label>
+                                <div class="mt-2">
+                                    <input type="text" name="city" id="city" autocomplete="address-level2" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="City">
+                                </div>
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <label for="region" class="block text-sm/6 font-medium text-gray-900">State / Province</label>
+                                <div class="mt-2">
+                                    <input type="text" name="region" id="region" autocomplete="address-level1" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="State / Province">
+                                </div>
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <label for="postal-code" class="block text-sm/6 font-medium text-gray-900">ZIP / Postal code</label>
+                                <div class="mt-2">
+                                    <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="ZIP / Postal code">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-900/10 pb-12">
+                        <h2 class="text-base/7 font-semibold text-gray-900">Password & Email</h2>
+                        <p class="mt-1 text-sm/6 text-gray-600">Used for login and receive notification</p>
+
+                            <div class="sm:col-span-4 mt-4">
+                                <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
+                                <div class="mt-2">
+                                    <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="Email address" required>
+                                </div>
+                            </div>
+
+                        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                            <div class="sm:col-span-3">
+                                <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
+                                <div class="mt-2">
+                                    <input type="password" name="password" id="password" autocomplete="new-password" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="Password" required>
+                                </div>
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="confirm-password" class="block text-sm/6 font-medium text-gray-900">Confirm Password</label>
+                                <div class="mt-2">
+                                    <input type="password" name="confirm-password" id="confirm-password" autocomplete="new-password" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="Confirm password" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-900/10 pb-12">
+                        <h2 class="text-base/7 font-semibold text-gray-900">Notifications</h2>
+                        <p class="mt-1 text-sm/6 text-gray-600">We'll always let you know about important changes.</p>
+
+                        <div class="mt-10 space-y-10">
+                            <fieldset>
+                                <legend class="text-sm/6 font-semibold text-gray-900">By email</legend>
+                                <div class="mt-6 space-y-6">
+                                    <div class="flex gap-3">
+                                        <div class="flex h-6 shrink-0 items-center">
+                                            <div class="group grid size-4 grid-cols-1">
+                                                <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" checked class="col-start-1 row-start-1 appearance-none rounded border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto">
+                                                <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-[:disabled]:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
+                                                    <path class="opacity-0 group-has-[:checked]:opacity-100" d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path class="opacity-0 group-has-[:indeterminate]:opacity-100" d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="text-sm/6">
+                                            <label for="comments" class="font-medium text-gray-900">Error log</label>
+                                            <p id="comments-description" class="text-gray-500">Get notified when an error occurs.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <div class="flex h-6 shrink-0 items-center">
+                                            <div class="group grid size-4 grid-cols-1">
+                                                <input id="candidates" aria-describedby="candidates-description" name="candidates" type="checkbox" class="col-start-1 row-start-1 appearance-none rounded border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto">
+                                                <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-[:disabled]:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
+                                                    <path class="opacity-0 group-has-[:checked]:opacity-100" d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path class="opacity-0 group-has-[:indeterminate]:opacity-100" d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="text-sm/6">
+                                            <label for="candidates" class="font-medium text-gray-900">Contact form</label>
+                                            <p id="candidates-description" class="text-gray-500">Get notified when a user submits a contact form.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <div class="flex h-6 shrink-0 items-center">
+                                            <div class="group grid size-4 grid-cols-1">
+                                                <input id="offers" aria-describedby="offers-description" name="offers" type="checkbox" class="col-start-1 row-start-1 appearance-none rounded border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto">
+                                                <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-[:disabled]:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
+                                                    <path class="opacity-0 group-has-[:checked]:opacity-100" d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path class="opacity-0 group-has-[:indeterminate]:opacity-100" d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="text-sm/6">
+                                            <label for="offers" class="font-medium text-gray-900">Offers</label>
+                                            <p id="offers-description" class="text-gray-500">Get notified when a user submits a contact form.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend class="text-sm/6 font-semibold text-gray-900">Notifications</legend>
+                                <div class="mt-6 space-y-6">
+                                    <div class="flex items-center gap-x-3">
+                                        <input id="push-email" name="push-notifications" type="radio" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                        <label for="push-email" class="block text-sm/6 font-medium text-gray-900">Email</label>
+                                    </div>
+                                    <div class="flex items-center gap-x-3">
+                                        <input id="push-nothing" name="push-notifications" type="radio" class="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden">
+                                        <label for="push-nothing" class="block text-sm/6 font-medium text-gray-900">No push notifications</label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex items-center justify-end gap-x-6">
+                    <button type="button" class="text-sm/6 font-semibold text-gray-900">Cancel</button>
+                    <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        const dob = document.getElementById('dob');
+        const age = document.getElementById('age');
+
+        dob.addEventListener('change', (e) => {
+            const dobValue = new Date(e.target.value);
+            const today = new Date();
+            const ageValue = today.getFullYear() - dobValue.getFullYear();
+            age.value = ageValue;
+        });
+
+        const packages = document.querySelectorAll('.bg-white');
+        const buttons = document.querySelectorAll('button');
+
+        buttons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                packages.forEach((pkg) => pkg.classList.remove('select-package'));
+                packages[index + 3].classList.add('select-package');
+                console.log(`Selected package: ${button.parentElement.id}`);
+            });
+        });
+
+
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            console.log(data);
+        });
+
+    </script>
+</body>
+</html>

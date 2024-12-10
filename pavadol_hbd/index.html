@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HBD</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Source+Code+Pro');
+        canvas { display: block; }
+
+        body {
+            margin: 0;
+            background: #020202;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            font-family: "Dancing Script", sans-serif;
+            font-size: 5vw;  /* ใช้ vw เพื่อปรับขนาดตามหน้าจอ */
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            position: absolute;
+            top: 20px;
+            z-index: 10;
+            color: transparent;
+            background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+            overflow: hidden;
+            white-space: nowrap;
+            background-size: 200%;
+            user-select: none;
+            display: inline-block;
+            border-right: 2px solid white; /* Effect of cursor */
+            -webkit-background-clip: text;
+            animation: rainbow 4s linear infinite;
+            font-size: 8vw; /* Adjust size for h1 */
+        }
+
+        /* @media query สำหรับ iPad Air 5 */
+        @media (max-width: 1024px) {
+            body {
+                font-size: 6vw;  /* ปรับขนาดฟอนต์ให้เหมาะสม */
+            }
+
+            h1 {
+                font-size: 7vw;  /* ปรับขนาดฟอนต์สำหรับ h1 */
+            }
+        }
+
+        /* ปรับขนาดฟอนต์บนหน้าจอที่มีความกว้างเล็กลง (มือถือ) */
+        @media (max-width: 768px) {
+            body {
+                font-size: 7vw; /* ปรับให้เล็กลงบนมือถือ */
+            }
+
+            h1 {
+                font-size: 10vw; /* ขนาดใหญ่ขึ้นสำหรับ h1 บนมือถือ */
+            }
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% }
+            100% { background-position: 200% }
+        }
+
+        /* Prevent interaction on mobile devices */
+        @media (max-width: 768px) {
+            body::after {
+                content: "This page is not available on mobile devices.";
+                color: white;
+                font-size: 0.5em;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+
+            canvas, h1 {
+                display: none; /* Hide canvas and text */
+            }
+        }
+
+        /* Balloons style */
+        .balloon {
+            position: absolute;
+            bottom: -150px;
+            width: 100px;
+            height: 150px;
+            background-size: cover;
+            border-radius: 50%;
+            animation: floatUp 10s ease-in infinite;
+        }
+
+        .balloon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes floatUp {
+            0% {
+                bottom: -150px;
+                opacity: 1;
+            }
+            100% {
+                bottom: 100vh;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="birthday"></canvas>
+<h1 id="text"></h1>
+
+<!-- Balloons section -->
+<div id="balloons-container"></div>
+
+<script>
+    // helper functions
+    const PI2 = Math.PI * 2;
+    const random = (min, max) => Math.random() * (max - min + 1) + min | 0;
+    const timestamp = _ => new Date().getTime();
+
+    // container
+    class Birthday {
+        constructor() {
+            this.resize();
+
+            // create a lovely place to store the firework
+            this.fireworks = [];
+            this.counter = 0;
+        }
+
+        resize() {
+            this.width = canvas.width = window.innerWidth;
+            let center = this.width / 2 | 0;
+            this.spawnA = center - center / 4 | 0;
+            this.spawnB = center + center / 4 | 0;
+
+            this.height = canvas.height = window.innerHeight;
+            this.spawnC = this.height * .1;
+            this.spawnD = this.height * .5;
+        }
+
+        onClick(evt) {
+            let x = evt.clientX || evt.touches && evt.touches[0].pageX;
+            let y = evt.clientY || evt.touches && evt.touches[0].pageY;
+
+            let count = random(3, 5);
+            for (let i = 0; i < count; i++) this.fireworks.push(new Firework(
+                random(this.spawnA, this.spawnB),
+                this.height,
+                x,
+                y,
+                random(0, 260),
+                random(30, 110)));
+
+            this.counter = -1;
+        }
+
+        update(delta) {
+            ctx.globalCompositeOperation = 'hard-light';
+            ctx.fillStyle = `rgba(20,20,20,${7 * delta})`;
+            ctx.fillRect(0, 0, this.width, this.height);
+
+            ctx.globalCompositeOperation = 'lighter';
+            for (let firework of this.fireworks) firework.update(delta);
+
+            this.counter += delta * 3; // each second
+            if (this.counter >= 1) {
+                this.fireworks.push(new Firework(
+                    random(this.spawnA, this.spawnB),
+                    this.height,
+                    random(0, this.width),
+                    random(this.spawnC, this.spawnD),
+                    random(0, 360),
+                    random(30, 110)));
+                this.counter = 0;
+            }
+
+            if (this.fireworks.length > 1000) this.fireworks = this.fireworks.filter(firework => !firework.dead);
+        }
+    }
+
+    class Firework {
+        constructor(x, y, targetX, targetY, shade, offsprings) {
+            this.dead = false;
+            this.offsprings = offsprings;
+
+            this.x = x;
+            this.y = y;
+            this.targetX = targetX;
+            this.targetY = targetY;
+
+            this.shade = shade;
+            this.history = [];
+        }
+        update(delta) {
+            if (this.dead) return;
+
+            let xDiff = this.targetX - this.x;
+            let yDiff = this.targetY - this.y;
+            if (Math.abs(xDiff) > 3 || Math.abs(yDiff) > 3) {
+                this.x += xDiff * 2 * delta;
+                this.y += yDiff * 2 * delta;
+
+                this.history.push({
+                    x: this.x,
+                    y: this.y
+                });
+
+                if (this.history.length > 20) this.history.shift();
+
+            } else {
+                if (this.offsprings && !this.madeChilds) {
+
+                    let babies = this.offsprings / 2;
+                    for (let i = 0; i < babies; i++) {
+                        let targetX = this.x + this.offsprings * Math.cos(PI2 * i / babies) | 0;
+                        let targetY = this.y + this.offsprings * Math.sin(PI2 * i / babies) | 0;
+
+                        birthday.fireworks.push(new Firework(this.x, this.y, targetX, targetY, this.shade, 0));
+
+                    }
+
+                }
+                this.madeChilds = true;
+                this.history.shift();
+            }
+
+            if (this.history.length === 0) this.dead = true;
+            else if (this.offsprings) {
+                for (let i = 0; this.history.length > i; i++) {
+                    let point = this.history[i];
+                    ctx.beginPath();
+                    ctx.fillStyle = 'hsl(' + this.shade + ',100%,' + i + '%)';
+                    ctx.arc(point.x, point.y, 1, 0, PI2, false);
+                    ctx.fill();
+                }
+            } else {
+                ctx.beginPath();
+                ctx.fillStyle = 'hsl(' + this.shade + ',100%,50%)';
+                ctx.arc(this.x, this.y, 1, 0, PI2, false);
+                ctx.fill();
+            }
+
+        }
+    }
+
+    let canvas = document.getElementById('birthday');
+    let ctx = canvas.getContext('2d');
+
+    let then = timestamp();
+
+    let birthday = new Birthday;
+    window.onresize = () => birthday.resize();
+    document.onclick = evt => birthday.onClick(evt);
+    document.ontouchstart = evt => birthday.onClick(evt);
+
+    ;(function loop() {
+        requestAnimationFrame(loop);
+
+        let now = timestamp();
+        let delta = now - then;
+
+        then = now;
+        birthday.update(delta / 1000);
+
+    })();
+
+    const message = "Happy Birthday To Pavadon!";
+    const textElement = document.getElementById('text');
+    let index = 0;
+
+    function showText() {
+        if (index < message.length) {
+            textElement.textContent += message[index];
+            index++;
+            setTimeout(showText, 100); // Adjust the speed by changing the timeout (in milliseconds)
+        } else {
+            // Remove the cursor effect after the message is fully shown
+            textElement.style.borderRight = "none";
+        }
+    }
+
+    showText();
+
+    // Balloon creation logic
+    const balloonImages = [
+        '1.jpeg', // replace with your own images or links
+        '2.jpg',
+        '3.jpg',
+        '4.jpg',
+        '5.jpg',
+        '6.jpg',
+        '7.jpg',
+        '8.jpg',
+        '9.jpg',
+        '10.jpg',
+        '11.jpg',
+        '12.jpg',
+    ];
+
+    function createBalloon() {
+        const balloon = document.createElement('div');
+        const img = document.createElement('img');
+        img.src = balloonImages[random(0, balloonImages.length - 1)];
+        balloon.classList.add('balloon');
+        balloon.appendChild(img);
+        document.getElementById('balloons-container').appendChild(balloon);
+
+        // Set random position and float
+        balloon.style.left = `${random(10, window.innerWidth - 100)}px`;
+        balloon.style.animationDuration = `${random(8, 15)}s`; // Adjust floating speed
+    }
+
+    setInterval(createBalloon, 3000); // Create a new balloon every 1.5 seconds
+
+</script>
+
+</body>
+</html>
