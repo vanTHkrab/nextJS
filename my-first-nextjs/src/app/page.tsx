@@ -1,11 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
+interface Post {
+    _id: string;
+    title: string;
+    content: string;
+    image: string;
+}
+
 export default function Home() {
-    const [postData, setPostData] = useState<any[]>([]);
+    const [postData, setPostData] = useState<Post[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,7 +26,6 @@ export default function Home() {
 
         fetchData();
     }, []);
-
 
     return (
         <main className="container mx-auto my-3">
