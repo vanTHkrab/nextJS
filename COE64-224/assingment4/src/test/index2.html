@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Theme Switcher</title>
+    <link rel="stylesheet" href="app2.css" id="theme-style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+    <script>
+        function changeTheme(theme) {
+            document.getElementById('theme-style').href = '/' + theme + '.css';
+        }
+    </script>
+</head>
+<body>
+<nav class="navbar">
+    <ul class="nav-list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+    </ul>
+    <div class="theme-switcher">
+        <button onclick="changeTheme('style01')">Style 01</button>
+        <button onclick="changeTheme('style02')">Style 02</button>
+        <button onclick="changeTheme('style03')">Style 03</button>
+    </div>
+</nav>
+
+<section id="about" class="firstsection">
+    <div class="box-main">
+        <div id="profile_box">
+            <img src="img/profile.jpg" alt="Jane Doe Professional Headshot" class="profile-image">
+            <h1 class="text-big">Jane Doe</h1>
+            <p class="text-small">Senior Software Engineer | Full Stack Web Developer</p>
+        </div>
+    </div>
+</section>
+
+<section id="experience" class="secondsection">
+    <div class="box-main">
+        <h3 class="text-big">Professional Experience</h3>
+        <ul class="text-small">
+            <li><strong>Senior Software Engineer</strong> | TechInnovate Solutions | Jan 2022 - Present</li>
+            <li><strong>Web Developer</strong> | WebCraft Innovations | Jun 2019 - Dec 2021</li>
+        </ul>
+    </div>
+</section>
+
+<section id="education" class="thirdsection">
+    <div class="box-main">
+        <h3 class="text-big">Education</h3>
+        <ul class="text-small">
+            <li><strong>M.Sc. Computer Science</strong> | Stanford University | 2017 - 2019</li>
+            <li><strong>B.Sc. Computer Engineering</strong> | MIT | 2013 - 2017</li>
+        </ul>
+    </div>
+</section>
+
+<section id="skills" class="fourthsection">
+    <div class="box-main">
+        <h3 class="text-big">Technical Skills</h3>
+        <ul class="text-small">
+            <li><strong>Languages:</strong> JavaScript, Python, Java</li>
+            <li><strong>Frameworks:</strong> React.js, Node.js, Tailwind CSS</li>
+            <li><strong>Tools:</strong> Git, Docker, AWS</li>
+            <li><strong>Databases:</strong> MongoDB, MySQL</li>
+        </ul>
+    </div>
+</section>
+
+<footer class="background">
+    <p class="text-footer">
+        Contact: jane.doe@techpro.com | LinkedIn: /in/janedoe | GitHub: @janedoe<br>
+        © 2024 Jane Doe Professional Portfolio
+    </p>
+</footer>
+</body>
+</html>

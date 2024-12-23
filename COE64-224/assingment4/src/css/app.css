@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-primary: #1b1b1b;
+        --color-secondary: #333333;
+        --color-tertiary: #808080;
+        --color-accent: #D3D3D3;
+        --color-accent-white: #FFFFFF;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        @apply transition-all duration-500 ease-in-out font-sans;
+    }
+
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+.theme-formal {
+    --color-primary: #292929;
+    --color-secondary: #424141;
+    --color-tertiary: #808080;
+    --color-accent: #D3D3D3;
+    --color-accent-white: #FFFFFF;
+}
+
+.theme-softHouse {
+    --color-primary: #2C6B2F;
+    --color-secondary: #388E3C;
+    --color-tertiary: #4CAF50;
+    --color-accent: #8BC34A;
+    --color-accent-white: #FFFFFF;
+}
+
+
