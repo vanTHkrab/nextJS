@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Activity 04 – Bootstrap Portfolio – Audsadawut Nakthungtao – 66133505 </title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <!-- Icon -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        body { background-color: #e9ecef; }
+        a { text-decoration: none; }
+         .card-img-top {
+             width: 100%; /* ให้รูปเต็มความกว้างของ container */
+             height: 200px; /* กำหนดความสูงที่แน่นอน */
+             object-fit: cover; /* ตัดส่วนที่เกินโดยคงอัตราส่วนของรูป */
+             border-radius: 5px; /* เพิ่มความโค้งให้กับมุม (ไม่จำเป็น) */
+         }
+    </style>
+</head>
+<body>
+<div class="d-flex flex-nowrap">
+    <div class="bg-light shadow w-75 mx-auto my-5 align-items-center">
+        <section name="TopDetail" class="text-bg-secondary position-relative">
+            <div class="p-5">
+                <h1 class="display-1">Portfolio</h1>
+                <p class="lead">Welcome to Audsadawut Nakthungtao.</p>
+                <a class="icon-link link-light position-absolute top-0 end-0 m-3" href="index.html"><span class="material-symbols-outlined">home</span></a>
+            </div>
+        </section>
+        <section name="Portfolio" class="m-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card shadow">
+                        <img src="images/portfolio/P1.jpg" class="card-img-top" alt="ICPC">
+                        <div class="card-body">
+                            <h5 class="card-title">ICPC</h5>
+                            <p class="card-text">Achieved 3rd place in the university-level ICPC competition.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow">
+                        <img src="images/portfolio/P5.jpg" class="card-img-top" alt="Paper Car">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Paper Car</h5>
+                            <p class="card-text">A project focused on integrating English communication skills with engineering design.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow">
+                        <img src="images/portfolio/P3.jpg" class="card-img-top" alt="ALU 2 Bit">
+                        <div class="card-body">
+                            <h5 class="card-title">ALU 2 BIT</h5>
+                            <p class="card-text">Built a functional 2-bit Arithmetic Logic Unit (ALU).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="card shadow">
+                        <img src="images/portfolio/P4.jpg" class="card-img-top" alt="Pradu Meeting">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Pradu Game Meeting</h5>
+                            <p class="card-text">Collaborative discussions to explore efficient work strategies.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow">
+                        <img src="images/portfolio/P2.jpg" class="card-img-top" alt="Pradu Game">
+                        <div class="card-body">
+                            <h5 class="card-title">Pradu Game Work</h5>
+                            <p class="card-text">Developed a website as part of the Pradu Game project.</p>
+                            <a href="https://pradugames.wu-sab.in.th/" class="btn btn-primary">Visit Website</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow">
+                        <img src="images/portfolio/P6.jpg" class="card-img-top" alt="Freshy Award Meeting">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Freshy Award Meeting</h5>
+                            <p class="card-text">Organized and conducted meetings for the Freshy Award event.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+</html>
