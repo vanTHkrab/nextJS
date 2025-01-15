@@ -7,18 +7,22 @@
     <link rel="stylesheet" href="./resource/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
-<body class="bg-rose-50 p-10">
+<body>
 <!-- Header Section -->
-<header class="w-full sm:w-10/12 lg:w-8/12 mx-auto my-10 bg-rose-300 p-10 rounded-lg shadow-lg mb-6 text-center"
-        style="background-image: url('img/students02.jpg'); background-position: 50% 50%;">
-    <h1 class="text-4xl font-bold text-white mb-2">COEAI - Yearbook 2024</h1>
-    <h3 class="text-2xl font-bold text-white">A collection of memories and moments</h3>
+<header class="w-full sm:w-10/12 lg:w-8/12 mx-auto my-10 bg-rose-300 p-10 rounded-lg shadow-lg mb-6 text-center z-10"
+        style="background-image: url('./images/bg/hbd-hero.jpg'); background-position: 50% 50%;">
+    <img src="images/ui/cake.png" alt="cake" class="mx-auto w-20 md:w-32">
+    <canvas id="balloonCanvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
+    <h1 class="text-flicker">COEAI - Yearbook 2024</h1>
+    <h3 class="text-flicker">A collection of memories and moments</h3>
 </header>
-<div class="container w-full sm:w-10/12 lg:w-8/12 mx-auto my-10 bg-white shadow-lg rounded-lg overflow-hidden">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+
+<div class="container w-full sm:w-10/12 lg:w-8/12 mx-auto my-10 bg-white shadow-lg rounded-lg overflow-hidden z-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 z-10">
         <!-- Student Cards will be added here -->
     </div>
 </div>
+
 <script>
     const icons = document.querySelectorAll('.fa-brands');
     icons.forEach(icon => {
@@ -26,6 +30,56 @@
     });
 
     document.addEventListener('DOMContentLoaded', () => {
+        const canvas = document.getElementById('balloonCanvas');
+        const ctx = canvas.getContext('2d');
+        const balloons = [];
+        const colors = ['#FFB6C1', '#FF69B4', '#FFA07A', '#FFD700', '#87CEEB', '#7CFC00'];
+
+        let maxBalloons = 100;
+        let count = 0;
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        for (let i = 0; i < 5; i++) {
+            balloons.push({
+                x: Math.random() * canvas.width,
+                y: canvas.height + Math.random() * canvas.height,
+                radius: Math.random() * 15 + 10,
+                speed: Math.random() * 2 + 1,
+                color: colors[Math.floor(Math.random() * colors.length)],
+            });
+        }
+
+        function drawBalloon(balloon) {
+            ctx.beginPath();
+            ctx.arc(balloon.x, balloon.y, balloon.radius, 0, Math.PI * 2);
+            ctx.fillStyle = balloon.color;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            balloons.forEach(balloon => {
+                balloon.y -= balloon.speed; // Move the balloon upward
+                if (balloon.y + balloon.radius < 0) {
+                    // Reset balloon to the bottom when it goes out of view
+                    balloon.y = canvas.height + balloon.radius;
+                    balloon.x = Math.random() * canvas.width;
+                }
+                drawBalloon(balloon);
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
         const container = document.querySelector('.grid');
         fetch('./data/students.json')
             .then(response => {
@@ -40,11 +94,11 @@
                 data.forEach(student => {
                     const card = document.createElement('div');
 
-                    card.classList.add('card');
+                    card.classList.add('card', 'hover-animate-bg', 'ripple');
 
                     card.innerHTML = `
 
-                    <div>
+                    <div class="w-full">
                         <img src="./images/assets/students/${student.studentID}.jpg"
                         alt="${student.name} ${student.surname}" class="rounded-full w-24 h-24 mx-auto">
                         <strong class="font-bold text, 'p-5', 'flex', 'items-start'-xl">${student.name} ${student.surname}</strong>
