@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Columns Example</title>
+    <link rel="stylesheet" href="./resource/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body class="bg-rose-50 p-10">
+<!-- Header Section -->
+<header class="w-full sm:w-10/12 lg:w-8/12 mx-auto my-10 bg-rose-300 p-10 rounded-lg shadow-lg mb-6 text-center"
+        style="background-image: url('img/students02.jpg'); background-position: 50% 50%;">
+    <h1 class="text-4xl font-bold text-white mb-2">COEAI - Yearbook 2024</h1>
+    <h3 class="text-2xl font-bold text-white">A collection of memories and moments</h3>
+</header>
+<div class="container w-full sm:w-10/12 lg:w-8/12 mx-auto my-10 bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+        <!-- Student Cards will be added here -->
+    </div>
+</div>
+<script>
+    const icons = document.querySelectorAll('.fa-brands');
+    icons.forEach(icon => {
+        icon.classList.add('fa-2x');
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.querySelector('.grid');
+        fetch('./data/students.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch data: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                container.innerHTML = '';
+
+                data.forEach(student => {
+                    const card = document.createElement('div');
+
+                    card.classList.add('card');
+
+                    card.innerHTML = `
+
+                    <div>
+                        <img src="./images/assets/students/${student.studentID}.jpg"
+                        alt="${student.name} ${student.surname}" class="rounded-full w-24 h-24 mx-auto">
+                        <strong class="font-bold text, 'p-5', 'flex', 'items-start'-xl">${student.name} ${student.surname}</strong>
+                        <p class="text-gray-600 mt-1">ID: ${student.studentID}</p>
+                        <p class="text-gray-600 mt-1">${student.HBDWish}</p>
+                        <a href="${student.URL_Facebook}" target="_blank" class="text-sky-700 mt-2 inline-block hover:underline">
+                            <i class="fa-brands fa-square-facebook fa-2x"></i>
+                        </a>
+                        <a href="${student.URL_Instagram}" target="_blank" class="text-pink-700 mt-2 inline-block hover:underline">
+                            <i class="fa-brands fa-square-instagram fa-2x"></i>
+                        </a>
+                    </div>
+                `;
+
+                    container.appendChild(card);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading student data:', error);
+                container.innerHTML = `<p class="text-red-500">Unable to load student data.</p>`;
+            });
+    });
+
+</script>
+</body>
+</html>
