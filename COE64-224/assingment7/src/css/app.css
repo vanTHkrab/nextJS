@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply font-sans text-gray-900 text-base p-10;
+        background: linear-gradient(270deg, #a7c2ff, #5574f1, #89b4f8, #1c55ce, #5574f1);
+        background-size: 150% 150%;
+        animation: bgAnimation 8s ease infinite;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    canvas {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@layer components {
+    .card {
+        @apply  rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 ease-in-out fade-in;
+    }
+
+    .card:hover {
+        transform: translateY(-10px) scale(1.05) rotate(1deg);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .text-rainbow {
+        background-image: linear-gradient(90deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
+        background-size: 200% auto;
+        background-clip: text;
+        text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: rainbow 10s linear infinite;
+    }
+}
+
+@layer utilities {
+    .rainbow {
+        background-image: linear-gradient(90deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
+        background-size: 200% auto;
+        background-clip: text;
+        text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: rainbow 10s linear infinite;
+    }
+
+    .fade-in {
+        animation: fadeIn 1s ease-out;
+    }
+}
+
+
+@keyframes rainbow {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bgAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
