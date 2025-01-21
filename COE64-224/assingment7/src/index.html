@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cat</title>
-    <link rel="stylesheet" href="./resource/app.css">
+    <title>Cal Gallery</title>
+    <link rel="stylesheet" href="resource/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="shortcut icon" href="images/cat.png" type="image/x-icon">
 </head>
 <body>
     <div class="container mx-auto px-4 py-8">
-        <h1 class="rainbow text-5xl font-bold text-center mb-8">Cat Gallery</h1>
+        <h1 class="rainbow text-5xl font-bold text-center mb-8 flex items-center justify-center space-x-2">
+            <img src="images/paw.png" alt="paw" class="w-12"/>
+            <span>Cal Gallery</span>
+            <img src="images/paw.png" alt="paw" class="w-12"/>
+        </h1>
         <div id="loading" class="flex justify-center items-center min-h-[50vh]">
             <i class="fas fa-spinner fa-spin text-4xl text-blue-500"></i>
         </div>
@@ -17,6 +22,6 @@
 <!-- Cards will be inserted here -->
         </div>
     </div>
-    <script src="./js/app.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

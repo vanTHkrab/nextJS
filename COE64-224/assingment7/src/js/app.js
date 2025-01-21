@@ -29,7 +29,6 @@ const fetchCats = async () => {
     }
 
 }
-document.addEventListener('DOMContentLoaded', fetchCats);
 
 const renderCats = (cats) => {
     const grid = document.getElementById('catGrid');
@@ -96,3 +95,5 @@ const createCatCard = (cat) => {
   `;
     return card;
 };
+
+document.addEventListener('DOMContentLoaded', fetchCats);
