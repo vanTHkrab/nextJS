@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <title>Vet Clinic</title>
+  </head>
+  <body class="bg-gray-50 flex flex-col h-screen">
+
+    <main
+      class="p-6 m-6 w-4/5 mx-auto mb-auto bg-yellow-300 rounded-md shadow-md"
+    >
+      <h2 class="text-2xl font-semibold text-center mb-4">
+        Doctors Management
+      </h2>
+      <button
+        id="addDoctorBtn"
+        class="mb-4 bg-yellow-200 px-4 py-2 rounded-md hover:scale-105 float-end"
+      >
+        <i class="fa-solid fa-person-circle-plus me-2"></i>New Doctor
+      </button>
+      <table class="min-w-full bg-white rounded-lg shadow-md">
+        <thead>
+          <tr class="bg-yellow-200">
+            <th class="p-4 text-left">#</th>
+            <th class="p-4 text-left">Image</th>
+            <th class="p-4 text-left">Name</th>
+            <th class="p-4 text-left">Specialty</th>
+            <th class="p-4 text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="doctorsList"></tbody>
+      </table>
+      <form
+        id="addDoctorForm"
+        class="hidden mt-4 bg-white p-4 rounded-md shadow-md"
+      >
+        <h3 class="text-xl font-semibold mb-2">Add New Doctor</h3>
+        <input
+          type="text"
+          id="doctorName"
+          name="doctorName"
+          placeholder="Doctor's Name"
+          class="border p-2 mb-2 w-full"
+          required
+        />
+
+        <input
+          type="text"
+          id="specialty"
+          name="specialty"
+          placeholder="Specialty"
+          class="border p-2 mb- 2 w-full"
+          required
+        />
+
+        <input
+          type="file"
+          id="doctorImage"
+          name="doctorImage"
+          accept="image/*"
+          class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100 mt-3 mb-3"
+          required
+        />
+        <button
+          id="submitDoctorBtn"
+          class="bg-blue-500 text-white px-4 py-2 rounded-md"
+        >
+          Submit
+        </button>
+        <button
+          id="cancelBtn"
+          class="bg-red-500 text-white px-4 py-2 rounded-md ml-2"
+        >
+          Cancel
+        </button>
+      </form>
+    </main>
+    <script>
+
+          document.addEventListener('DOMContentLoaded', function () {
+              const addDoctorBtn = document.getElementById('addDoctorBtn');
+              const addDoctorForm = document.getElementById('addDoctorForm');
+              const submitDoctorBtn = document.getElementById('submitDoctorBtn');
+              const cancelBtn = document.getElementById('cancelBtn');
+
+              function fetchDoctors(){
+                  fetch('http://localhost:3000/clinic/doctors')
+                      .then(response => response.json())
+                      .then(data => {
+                          if (data.success) {
+                              const doctorsList = document.getElementById('doctorsList');
+                              doctorsList.innerHTML = ''; // Clear doctors list
+                              let i = 1;
+                              data.doctors.forEach(doctor => {
+                                  const doctorRow = document.createElement('tr');
+                                  doctorRow.innerHTML = `
+                                      <td class="p-4">${i}</td>
+                                      <td class="p-4"><img src="${doctor.image}" alt="${doctor.name}" class="w-16 h-16 rounded-full object-cover"></td>
+                                      <td class="p-4">${doctor.name}</td>
+                                      <td class="p-4">${doctor.specialty}</td>
+                                      <td class="p-4">
+                                          <button class="text-blue-500" onclick="editDoctor(${doctor.id})"><i class="fas fa-edit me-2"></i></button>
+                                          <button class="text-red-500" onclick="deleteDoctor(${doctor.id})"><i class="fas fa-trash"></i></button>
+                                      </td>`;
+                                  doctorsList.appendChild(doctorRow);
+                                  i++;
+                              });
+                          }
+                      })
+                      .catch(error => {
+                          console.error('Error fetching doctors:', error);
+                      });
+              }
+              submitDoctorBtn.addEventListener('click', function () {
+                  submitDoctorBtn.addEventListener('click', function () {
+                      const formData = new FormData(addDoctorForm);
+                      for (const [key, value] of formData.entries()) {
+                          console.log(key, value);
+                      }
+                      fetch('http://localhost:3000/clinic/new_doctors', {
+                          method: 'POST',
+                          body: formData
+                      })
+                          .then(response => response.json())
+                          .then(data => {
+                              if (data.success) {
+                                  console.log('Doctor created:', data);
+                                  fetchDoctors();
+                                  addDoctorForm.classList.add('hidden');
+                                  addDoctorForm.reset();
+                              }
+                          }).catch(error => {
+                          console.error('Error creating doctor:', error);
+                      });
+                  });
+              });
+              addDoctorBtn.addEventListener('click', function () {
+                  addDoctorForm.classList.toggle('hidden');
+              });
+              cancelBtn.addEventListener('click', function () {
+                  addDoctorForm.classList.add('hidden');
+              });
+              fetchDoctors();
+          });
+    </script>
+  </body>
+</html>
